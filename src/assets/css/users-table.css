@@ -1,0 +1,33 @@
+/* usersTable css */
+
+.usersTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.usersTable th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+.usersTable td {
+  padding: 10px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.usersTable tr:hover {
+  background-color: #f9f9f9;
+}
+
+.usersTable .actions {
+  text-align: right;
+}
+
+.usersTable .actions a {
+  margin-right: 10px;
+}
+

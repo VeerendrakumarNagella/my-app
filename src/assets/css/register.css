@@ -1,0 +1,24 @@
+.user-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  background-color: lightcyan;
+}
+
+.user-form .form-element {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.user-form .form-element label {
+  width: 100px;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.user-form .form-element .text-input {
+  flex: 1;
+  padding: 8px 10px
+}
