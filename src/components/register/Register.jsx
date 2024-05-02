@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../controls/Button/Button";
 
 const Register = () => {
@@ -14,6 +15,7 @@ const Register = () => {
     comments: "",
   };
   const [user, setUser] = useState(intialUserValues);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { value, name, type } = e.target;
@@ -42,9 +44,8 @@ const Register = () => {
     console.log(user);
   };
 
-  const handleReset = (e) => {
-    e.preventDefault();
-    setUser(intialUserValues);
+  const handleLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -197,7 +198,7 @@ const Register = () => {
 
           <div className="form-element button-group">
             <Button title="Register" onClick={handleSubmit} />
-            <Button title="Reset" type="danger" onClick={handleReset} />
+            <Button title="Login" type="danger" onClick={handleLogin} />
           </div>
         </div>
       </form>
