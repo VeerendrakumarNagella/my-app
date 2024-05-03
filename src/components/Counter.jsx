@@ -60,7 +60,13 @@ const Counter = ({ owner, age }) => {
       <button onClick={() => setCounter(0)}>Reset</button> */}
       <Button
         title="Increment"
-        onClick={() => setCounter((prevVal) => prevVal + 1)}
+        onClick={() => {
+          setTimeout(() => {
+            // setCounter(counter + 1);
+            setCounter((prevVal) => prevVal + 1);
+          }, 2000);
+          // setCounter(counter + 1);
+        }}
         type="success"
         userFullName={userFullName}
         owner={owner}

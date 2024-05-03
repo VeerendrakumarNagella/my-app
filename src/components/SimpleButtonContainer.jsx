@@ -6,6 +6,7 @@ const SimpleButtonContainer = () => {
 
   const handleClick = () => {
     setUserFullName("Jane Doe");
+    console.log("User Name is", userFullName);
   };
 
   // const handleIncrement = () => {

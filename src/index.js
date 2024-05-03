@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import "./assets/css/resume.css";
+import "./assets/css/button.css";
+import "./assets/css/users-table.css";
+import "./assets/css/register.css";
+import "./assets/css/header.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
