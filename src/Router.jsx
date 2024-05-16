@@ -9,6 +9,7 @@ import Button from "./controls/Button/Button";
 // import Login from "./components/login/Login";
 // import UsersDataFromApi from "./components/users-table/UsersDataFromApi";
 import PageNotFound from "./components/common/PageNotFount";
+// import TodoApp from "./components/todo-app/TodoApp";
 
 const ResumeContainer = lazy(() =>
   import("./components/resume-conatiner/ResumeContainer")
@@ -23,6 +24,7 @@ const Login = lazy(() => import("./components/login/Login"));
 const UsersDataFromApi = lazy(() =>
   import("./components/users-table/UsersDataFromApi")
 );
+const TodoApp = lazy(() => import("./components/todo-app/TodoApp"));
 
 const Router = () => {
   return (
@@ -37,6 +39,7 @@ const Router = () => {
         <Route path="/button" element={<Button title="Simple" />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/todo-app" element={<TodoApp />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>

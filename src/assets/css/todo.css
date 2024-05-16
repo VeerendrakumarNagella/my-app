@@ -1,0 +1,58 @@
+.todo-container {
+  margin: 10px;
+  border: 1px solid #ddd;
+  min-height: calc(100vh - 100px);
+}
+
+.todo-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-container .todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.todo-container .todo-item div {
+  display: flex;
+  align-items: center;
+}
+
+.todo-container .todo-item input[type="checkbox"] {
+  margin-right: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.todo-container ul li:last-child {
+  border-bottom: none;
+}
+
+.todo-container ul button {
+  cursor: pointer;
+}
+
+.todo-container .todo-title {
+  margin-bottom: 20px;
+}
+
+.todo-form input.new-todo {
+  width: 200px;
+  padding: 9px 15px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: #ccc;
+  font-style: italic;
+}
+
+.error {
+  color: red;
+}
