@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "../../controls/Button/Button";
 
 const AddTodo = ({
@@ -24,6 +25,14 @@ const AddTodo = ({
       {titleError && <p className="error">*{titleError}</p>}
     </div>
   );
+};
+
+AddTodo.propTypes = {
+  title: PropTypes.string.isRequired,
+  titleError: PropTypes.string.isRequired,
+  inputRef: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleAddTodo: PropTypes.func.isRequired,
 };
 
 export default AddTodo;

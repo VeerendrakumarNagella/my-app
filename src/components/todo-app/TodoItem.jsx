@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "../../controls/Button/Button";
 
 const TodoItem = ({ todo, handleComplete, handleDelete }) => {
@@ -15,6 +16,7 @@ const TodoItem = ({ todo, handleComplete, handleDelete }) => {
         />
         <span>{todo.title}</span>
       </div>
+
       <div className="btn-container">
         <Button
           type="info"
@@ -29,6 +31,16 @@ const TodoItem = ({ todo, handleComplete, handleDelete }) => {
       </div>
     </div>
   );
+};
+
+TodoItem.propTypes = {
+  todo: PropTypes.shape({
+    completed: PropTypes.bool.isRequired,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  handleComplete: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default TodoItem;
