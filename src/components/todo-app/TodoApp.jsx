@@ -38,7 +38,9 @@ const TodoApp = () => {
   });
   const [todos, setTodos] = useState(initialTodos);
   const [titleError, setTitleError] = useState("");
+  const [updateTitleError, setUpdateTitleError] = useState("");
   const inputRef = useRef(null);
+  const updateRef = useRef(null);
 
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -114,6 +116,12 @@ const TodoApp = () => {
   };
 
   const handleUpdate = () => {
+    if (!updateDialog.title) {
+      setUpdateTitleError("Please enter a todo title");
+      updateRef.current.focus();
+      return;
+    }
+
     const updatedTodos = todos.map((todo) => {
       if (todo.id === updateDialog.id) {
         todo.title = updateDialog.title;
@@ -121,6 +129,7 @@ const TodoApp = () => {
       }
       return todo;
     });
+
     setTodos(updatedTodos);
     setUpdateDialog({
       open: false,
@@ -174,10 +183,12 @@ const TodoApp = () => {
       {updateDialog.open && (
         <UpdateTodoDialog
           todo={updateDialog}
-          completed={updateDialog.completed}
           handleUpdate={handleUpdate}
           handleClose={handleClose}
           setUpdateDialog={setUpdateDialog}
+          updateTitleError={updateTitleError}
+          updateRef={updateRef}
+          setUpdateTitleError={setUpdateTitleError}
         />
       )}
     </section>

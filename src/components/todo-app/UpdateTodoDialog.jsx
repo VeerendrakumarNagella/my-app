@@ -13,6 +13,9 @@ const UpdateTodoDialog = ({
   handleUpdate,
   handleClose,
   setUpdateDialog,
+  updateTitleError,
+  updateRef,
+  setUpdateTitleError,
 }) => {
   return (
     <Dialog
@@ -30,10 +33,16 @@ const UpdateTodoDialog = ({
                 type="text"
                 placeholder="Add a new todo"
                 className="new-todo"
-                onChange={(e) =>
-                  setUpdateDialog({ ...todo, title: e.target.value })
-                }
+                onChange={(e) => {
+                  if (!e.target.value) {
+                    setUpdateTitleError("Please enter a todo title");
+                  } else {
+                    setUpdateTitleError("");
+                  }
+                  setUpdateDialog({ ...todo, title: e.target.value });
+                }}
                 value={todo.title}
+                ref={updateRef}
               />
               <Switch
                 checked={todo.completed}
@@ -42,6 +51,7 @@ const UpdateTodoDialog = ({
                 }
               />
             </div>
+            {updateTitleError && <p className="error">*{updateTitleError}</p>}
           </div>
         </DialogContentText>
       </DialogContent>
@@ -71,6 +81,9 @@ UpdateTodoDialog.propTypes = {
   handleUpdate: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
   setUpdateDialog: PropTypes.func.isRequired,
+  updateTitleError: PropTypes.string.isRequired,
+  updateRef: PropTypes.object.isRequired,
+  setUpdateTitleError: PropTypes.func.isRequired,
 };
 
 export default UpdateTodoDialog;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import Button from "../../controls/Button/Button";
 
@@ -8,11 +8,12 @@ const TodoItem = ({
   handleDeleteDialog,
   handleUpdateDialog,
 }) => {
+  const isCompleted = useMemo(() => {
+    return todo.completed ? "completed" : "no";
+  }, [todo.completed]);
+
   return (
-    <div
-      className={`todo-item ${todo.completed ? "completed" : "no"} `}
-      key={todo.id}
-    >
+    <div className={`todo-item ${isCompleted}`} key={todo.id}>
       <div>
         <input
           type="checkbox"
