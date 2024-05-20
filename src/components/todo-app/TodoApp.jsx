@@ -1,26 +1,42 @@
 import React, { useState, useRef } from "react";
 import AddTodo from "./AddTodo";
 import TodoItems from "./TodoItems";
+import DeleteTodoDialog from "./DeleteTodoDialog";
+import UpdateTodoDialog from "./UpdateTodoDialog";
+
+const initialTodos = [
+  {
+    id: 1,
+    title: "Todo 1",
+    completed: false,
+  },
+  {
+    id: 2,
+    title: "Todo 2",
+    completed: true,
+  },
+  {
+    id: 3,
+    title: "Todo 3",
+    completed: false,
+  },
+];
 
 const TodoApp = () => {
   const [title, setTitle] = useState("");
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "Todo 1",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Todo 2",
-      completed: true,
-    },
-    {
-      id: 3,
-      title: "Todo 3",
-      completed: false,
-    },
-  ]);
+  const [completed, setCompleted] = useState(false);
+  const [deleteDialog, setDeleteDialog] = useState({
+    open: false,
+    id: null,
+    title: "",
+  });
+  const [updateDialog, setUpdateDialog] = useState({
+    open: false,
+    id: null,
+    title: "",
+    completed: false,
+  });
+  const [todos, setTodos] = useState(initialTodos);
   const [titleError, setTitleError] = useState("");
   const inputRef = useRef(null);
 
@@ -62,16 +78,70 @@ const TodoApp = () => {
       ...todos,
       {
         id: Math.floor(Math.random() * 999999) + 1,
-        title: title,
-        completed: false,
+        title,
+        completed,
       },
     ]);
     setTitle("");
+    setCompleted(false);
   };
 
-  const handleDelete = (id) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
+  const handleDeleteDialog = (todo) => {
+    setDeleteDialog({
+      open: true,
+      id: todo.id,
+      title: todo.title,
+    });
+  };
+
+  const handleUpdateDialog = (todo) => {
+    setUpdateDialog({
+      open: true,
+      id: todo.id,
+      title: todo.title,
+      completed: todo.completed,
+    });
+  };
+
+  const handleDelete = () => {
+    const updatedTodos = todos.filter((todo) => todo.id !== deleteDialog.id);
     setTodos(updatedTodos);
+    setDeleteDialog({
+      open: false,
+      id: null,
+      title: "",
+    });
+  };
+
+  const handleUpdate = () => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === updateDialog.id) {
+        todo.title = updateDialog.title;
+        todo.completed = updateDialog.completed;
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+    setUpdateDialog({
+      open: false,
+      id: null,
+      title: "",
+      completed: false,
+    });
+  };
+
+  const handleClose = () => {
+    setDeleteDialog({
+      open: false,
+      id: null,
+      title: "",
+    });
+    setUpdateDialog({
+      open: false,
+      id: null,
+      title: "",
+      completed: false,
+    });
   };
 
   return (
@@ -85,12 +155,31 @@ const TodoApp = () => {
         inputRef={inputRef}
         handleChange={handleChange}
         handleAddTodo={handleAddTodo}
+        setCompleted={setCompleted}
+        completed={completed}
       />
       <TodoItems
         todos={todos}
         handleComplete={handleComplete}
-        handleDelete={handleDelete}
+        handleDeleteDialog={handleDeleteDialog}
+        handleUpdateDialog={handleUpdateDialog}
       />
+      {deleteDialog.open && (
+        <DeleteTodoDialog
+          title={deleteDialog.title}
+          handleDelete={handleDelete}
+          handleClose={handleClose}
+        />
+      )}
+      {updateDialog.open && (
+        <UpdateTodoDialog
+          todo={updateDialog}
+          completed={updateDialog.completed}
+          handleUpdate={handleUpdate}
+          handleClose={handleClose}
+          setUpdateDialog={setUpdateDialog}
+        />
+      )}
     </section>
   );
 };

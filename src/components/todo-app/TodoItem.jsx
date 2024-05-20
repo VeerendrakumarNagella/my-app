@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "../../controls/Button/Button";
 
-const TodoItem = ({ todo, handleComplete, handleDelete }) => {
+const TodoItem = ({
+  todo,
+  handleComplete,
+  handleDeleteDialog,
+  handleUpdateDialog,
+}) => {
   return (
     <div
       className={`todo-item ${todo.completed ? "completed" : "no"} `}
@@ -21,12 +26,12 @@ const TodoItem = ({ todo, handleComplete, handleDelete }) => {
         <Button
           type="info"
           title="Edit"
-          onClick={() => console.log("edit new todo")}
+          onClick={() => handleUpdateDialog(todo)}
         />
         <Button
           type="danger"
           title="Delete"
-          onClick={() => handleDelete(todo.id)}
+          onClick={() => handleDeleteDialog(todo)}
         />
       </div>
     </div>
@@ -40,7 +45,8 @@ TodoItem.propTypes = {
     title: PropTypes.string.isRequired,
   }).isRequired,
   handleComplete: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  handleDeleteDialog: PropTypes.func.isRequired,
+  handleUpdateDialog: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

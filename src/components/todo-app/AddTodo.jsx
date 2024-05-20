@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Switch from "@mui/material/Switch";
 import Button from "../../controls/Button/Button";
 
 const AddTodo = ({
@@ -8,6 +9,8 @@ const AddTodo = ({
   inputRef,
   handleChange,
   handleAddTodo,
+  setCompleted,
+  completed,
 }) => {
   return (
     <div className="add-todo">
@@ -19,6 +22,10 @@ const AddTodo = ({
           onChange={handleChange}
           value={title}
           ref={inputRef}
+        />
+        <Switch
+          checked={completed}
+          onChange={(_e, checked) => setCompleted(checked)}
         />
         <Button title="Add" onClick={handleAddTodo} />
       </div>
@@ -33,6 +40,8 @@ AddTodo.propTypes = {
   inputRef: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleAddTodo: PropTypes.func.isRequired,
+  setCompleted: PropTypes.func.isRequired,
+  completed: PropTypes.bool.isRequired,
 };
 
 export default AddTodo;

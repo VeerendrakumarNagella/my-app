@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import TodoItem from "./TodoItem";
 
-const TodoItems = ({ todos, handleComplete, handleDelete }) => {
+const TodoItems = ({
+  todos,
+  handleComplete,
+  handleDeleteDialog,
+  handleUpdateDialog,
+}) => {
   return (
     <div className="todo-list">
       <div>
@@ -12,7 +17,8 @@ const TodoItems = ({ todos, handleComplete, handleDelete }) => {
               <TodoItem
                 todo={todo}
                 handleComplete={handleComplete}
-                handleDelete={handleDelete}
+                handleDeleteDialog={handleDeleteDialog}
+                handleUpdateDialog={handleUpdateDialog}
                 key={todo.id}
               />
             );
@@ -30,7 +36,8 @@ const TodoItems = ({ todos, handleComplete, handleDelete }) => {
 TodoItems.propTypes = {
   todos: PropTypes.array.isRequired,
   handleComplete: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  handleDeleteDialog: PropTypes.func.isRequired,
+  handleUpdateDialog: PropTypes.func.isRequired,
 };
 
 export default TodoItems;
