@@ -39,6 +39,8 @@ const TodoApp = () => {
   const [todos, setTodos] = useState(initialTodos);
   const [titleError, setTitleError] = useState("");
   const [updateTitleError, setUpdateTitleError] = useState("");
+  const [titleName, setTitleName] = useState("");
+
   const inputRef = useRef(null);
   const updateRef = useRef(null);
 
@@ -153,10 +155,14 @@ const TodoApp = () => {
     });
   };
 
+  const getTitleName = (title) => {
+    setTitleName(title);
+  };
+
   return (
     <section className="todo-container container">
       <div className="todo-title">
-        <h1>Todo App</h1>
+        <h1>{titleName}</h1>
       </div>
       <AddTodo
         title={title}
@@ -166,6 +172,7 @@ const TodoApp = () => {
         handleAddTodo={handleAddTodo}
         setCompleted={setCompleted}
         completed={completed}
+        getTitleName={getTitleName}
       />
       <TodoItems
         todos={todos}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Switch from "@mui/material/Switch";
 import Button from "../../controls/Button/Button";
@@ -11,7 +11,14 @@ const AddTodo = ({
   handleAddTodo,
   setCompleted,
   completed,
+  getTitleName,
 }) => {
+  const todoTitle = "My Check List";
+
+  useEffect(() => {
+    getTitleName(todoTitle);
+  }, [getTitleName]);
+
   return (
     <div className="add-todo">
       <div className="todo-form">
@@ -36,6 +43,7 @@ const AddTodo = ({
 
 AddTodo.propTypes = {
   title: PropTypes.string.isRequired,
+  getTitleName: PropTypes.func.isRequired,
   titleError: PropTypes.string.isRequired,
   inputRef: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
