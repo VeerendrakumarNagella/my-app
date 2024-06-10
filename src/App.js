@@ -1,17 +1,29 @@
 import React from "react";
 import Router from "./Router";
 import Header from "./components/header/Header";
+import { UserNameContext } from "./components/context/userDetialsContext";
+import { LoginContext } from "./components/context/isLoginContext";
+import { CounterContext } from "./components/counter/counterContext";
+import { useCounter } from "./components/counter/useCounter";
 
 const App = () => {
-  const isLogged = false;
+  const { counter, setCounter } = useCounter();
+  const isLogged = true;
+  const userName = "John Doe";
 
   return (
-    <div>
-      <Header />
-      <div style={{ padding: "20px" }}>
-        <Router isLogged={isLogged} />
-      </div>
-    </div>
+    <CounterContext.Provider value={{ counter, setCounter }}>
+      <LoginContext.Provider value={{ isLogged }}>
+        <UserNameContext.Provider value={{ userName }}>
+          <div>
+            <Header />
+            <div style={{ padding: "20px" }}>
+              <Router isLogged={isLogged} />
+            </div>
+          </div>
+        </UserNameContext.Provider>
+      </LoginContext.Provider>
+    </CounterContext.Provider>
   );
 };
 

@@ -1,4 +1,4 @@
-import MyProfileImg from "../../assets/images/image.png";
+import InfoContainer from "./InfoContainer";
 
 const ResumeContainer = () => {
   const userDetail = {
@@ -12,38 +12,11 @@ const ResumeContainer = () => {
     experience: 7.8,
   };
 
-  const styles = {
-    color: "red",
-    backgroundColor: "yellow",
-    padding: "10px",
-    borderRadius: "5px",
-  };
-
   const cName = "resume-container";
 
   return (
     <div className={cName}>
-      <div className="info container">
-        {/* <h3 style="color: red; background-color: yellow;">   We can't write inline styles like this  */}
-        {/* <h3
-          style={{
-            color: "red",
-            backgroundColor: "yellow",
-            padding: "10px",
-            borderRadius: "5px",
-          }}
-        > */}
-        <h3 style={styles}>{userDetail.name}</h3>
-        <div>
-          <a href={`mailto:${userDetail.email}`}>{userDetail.email}</a>
-        </div>
-        <br />
-        <div>
-          <a href={`tel:${userDetail.phone.value}`}>{userDetail.phone.label}</a>
-        </div>
-        <br />
-        <img src={MyProfileImg} alt="profile-img" />
-      </div>
+      <InfoContainer userDetail={userDetail} />
       <br />
       <hr />
       <br />
