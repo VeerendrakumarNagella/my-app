@@ -23,13 +23,15 @@ const InfoContainer = ({ userDetail }) => {
             borderRadius: "5px",
           }}
         > */}
-      <h3 style={styles}>{userName}</h3>
+      <h3 style={styles}>{userName ?? "Veerendra"}</h3>
       <div>
         <a href={`mailto:${userDetail.email}`}>{userDetail.email}</a>
       </div>
       <br />
       <div>
-        <a href={`tel:${userDetail.phone.value}`}>{userDetail.phone.label}</a>
+        <a href={`tel:${userDetail?.phone?.value ?? ""}`}>
+          {userDetail?.phone?.label || ""}
+        </a>
       </div>
       <br />
       <img src={MyProfileImg} alt="profile-img" />
