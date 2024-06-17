@@ -9,6 +9,7 @@ import "./assets/css/users-table.css";
 import "./assets/css/register.css";
 import "./assets/css/header.css";
 import "./assets/css/todo.css";
+import "./assets/css/input.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 

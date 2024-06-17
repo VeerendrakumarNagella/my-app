@@ -1,9 +1,7 @@
-import { useState } from "react";
 import UserList from "./practice/UserList";
 
 const App = () => {
-  const [userName, setUserName] = useState("John Doe");
-  const [users, setUsers] = useState([
+  const intialUsers = [
     { id: 1, name: "John Doe", email: "john@mail.com", phone: "1234567890" },
     { id: 2, name: "Jane Doe", email: "jane@mail.com", phone: "0987654321" },
     {
@@ -12,26 +10,22 @@ const App = () => {
       email: "smith@gmail.com",
       phone: "1234509876",
     },
-  ]);
-
-  const handleClick = () => {
-    setUserName("Sai");
-    console.log(userName);
-    // This will still log "John Doe" because the state has not been updated yet, and the component has not been re-rendered
-  };
-
-  const handleDelete = (targetUser) => {
-    const newUsers = users.filter((user) => user.id !== targetUser.id);
-    setUsers(newUsers);
-  };
+    {
+      id: 4,
+      name: "Jane Smith",
+      email: "test@mail.com",
+      phone: "0987612345",
+    },
+    { id: 5, name: "trinadh", email: "mail@mail.com", phone: "0987612345" },
+    { id: 6, name: "trilokh", email: "mail@mail.com", phone: "0987612345" },
+    { id: 7, name: "sai", email: "mail@mail.com", phone: "0987612345" },
+  ];
 
   return (
     <div>
-      <h2>Hello, {userName}</h2>
-      <button onClick={handleClick}>Change Name</button>
-
+      <h2>Hello, World</h2>
       <br />
-      <UserList userName={userName} handleDelete={handleDelete} users={users} />
+      <UserList intialUsers={intialUsers} />
     </div>
   );
 };
