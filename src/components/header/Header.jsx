@@ -9,6 +9,7 @@ const Header = () => {
         <NavLink to="/counter">Counter</NavLink>
         <NavLink to="/users-table">Users Table</NavLink>
         <NavLink to="/users-api">Users API </NavLink>
+        <NavLink to="/users-redux">Users Redux </NavLink>
         <NavLink to="/button">Button</NavLink>
         <NavLink to="/todo-app">Todo App</NavLink>
         <NavLink to="/register">Register</NavLink>

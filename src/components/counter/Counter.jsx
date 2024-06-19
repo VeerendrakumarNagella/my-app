@@ -1,9 +1,15 @@
-import { useContext } from "react";
+// import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "../../controls/Button/Button";
-import { CounterContext } from "./counterContext";
+import { decrement, increment, reset } from "../../redux/actions/counterAction";
+
+// import { CounterContext } from "./counterContext";
 
 const Counter = () => {
-  const { counter, setCounter } = useContext(CounterContext);
+  const dispatch = useDispatch();
+  const { counter } = useSelector((state) => state.counterReducer);
+
+  // const { counter, setCounter } = useContext(CounterContext);
 
   return (
     <div>
@@ -13,15 +19,22 @@ const Counter = () => {
       </p>
       <Button
         title="Increment"
-        onClick={() => setCounter((prev) => prev + 1)}
+        onClick={() => dispatch(increment())}
+        // onClick={() => setCounter((prev) => prev + 1)}
         type="success"
       />
       <Button
-        onClick={() => setCounter((prev) => prev - 1)}
+        onClick={() => dispatch(decrement())}
+        // onClick={() => setCounter((prev) => prev - 1)}
         title="Decrement"
         type="danger"
       />
-      <Button onClick={() => setCounter(0)} title="Reset" type="warning" />
+      <Button
+        onClick={() => dispatch(reset())}
+        // onClick={() => setCounter(0)}
+        title="Reset"
+        type="warning"
+      />
     </div>
   );
 };

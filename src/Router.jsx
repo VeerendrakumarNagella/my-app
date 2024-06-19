@@ -18,6 +18,9 @@ const UsersDataFromApi = lazy(() =>
   import("./components/users-table/UsersDataFromApi")
 );
 const TodoApp = lazy(() => import("./components/todo-app/TodoApp"));
+const UsersFromRedux = lazy(() =>
+  import("./components/users-table/UsersFromRedux")
+);
 
 const Router = () => {
   const { isLogged } = useContext(LoginContext);
@@ -32,6 +35,7 @@ const Router = () => {
           <Route path="/counter" element={<Counter />} />
           <Route path="/users-table" element={<UsersTable />} />
           <Route path="/users-api" element={<UsersDataFromApi />} />
+          <Route path="/users-redux" element={<UsersFromRedux />} />
           <Route path="/button" element={<Button title="Simple" />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

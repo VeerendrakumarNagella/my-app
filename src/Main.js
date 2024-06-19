@@ -12,18 +12,18 @@ const Main = () => {
   const userName = "John Doe";
 
   return (
-    <CounterContext.Provider value={{ counter, setCounter }}>
-      <LoginContext.Provider value={{ isLogged }}>
-        <UserNameContext.Provider value={{ userName }}>
-          <div>
-            <Header />
-            <div style={{ padding: "20px" }}>
+    <LoginContext.Provider value={{ isLogged }}>
+      <UserNameContext.Provider value={{ userName }}>
+        <div>
+          <Header />
+          <div style={{ padding: "20px" }}>
+            <CounterContext.Provider value={{ counter, setCounter }}>
               <Router isLogged={isLogged} />
-            </div>
+            </CounterContext.Provider>
           </div>
-        </UserNameContext.Provider>
-      </LoginContext.Provider>
-    </CounterContext.Provider>
+        </div>
+      </UserNameContext.Provider>
+    </LoginContext.Provider>
   );
 };
 
