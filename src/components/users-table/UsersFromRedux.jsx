@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import { getUsers } from "../../redux/actions/usersDataAction";
 import Loader from "../common/Loader";
 
@@ -12,6 +12,12 @@ const UsersFromRedux = () => {
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   props.getUsers();
+  // }, []);
+
+  // const { loading, users, errorMessage } = props;
 
   if (errorMessage) return <div>{errorMessage}</div>;
 
@@ -53,4 +59,19 @@ const UsersFromRedux = () => {
   );
 };
 
+// const mapStateToProps = (state) => {
+//   return {
+//     loading: state.usersDataReducer.loading,
+//     users: state.usersDataReducer.users,
+//     errorMessage: state.usersDataReducer.errorMessage,
+//   };
+// };
+
+// const mapDispatchToProps = {
+//   getUsers,
+// };
+
 export default UsersFromRedux;
+
+// export default connect(mapStateToProps, { getUsers })(UsersFromRedux); // without mapDispatchToProps
+// export default connect(mapStateToProps, mapDispatchToProps)(UsersFromRedux);
